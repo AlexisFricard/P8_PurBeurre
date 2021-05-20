@@ -1,0 +1,63 @@
+{% extends "template_ref.html" %}
+{% load static %}
+
+{% block body %}
+    {% if not products %}
+    <section class="text-center pt-mainNav full-size align-i-c flex">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h1 class="pt-0">Merci de préciser votre demande</h1>
+                </div>
+                <div class="container">
+                    <div class="row h-100 align-items-center justify-content-center text-center">
+                        <div class="col-lg-8 align-self-baseline">
+                            <a class="nav-link js-scroll-trigger mw-50 h-50px">
+                                <form class="form-group" method="post" action="/selection">
+                                    {% csrf_token %}
+                                    <input autocomplete='off' type="text" name="user_text" class="form-control" placeholder="Rechercher">
+                                </form>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% else %}
+    <section class="nav bg-primary pb-20px">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h1 class="pt-20px pb-20px">
+                        Sélectionnez votre produit
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="container w-75">
+                <div class="row justify-content-center mt-3">
+                    {% for product in products %}
+                        <div class="col-lg-4 mb-4 mt-1">
+                            <div class="card text-primary">
+                                <div class="position-relative">
+                                    <img src="static/assets/img/letnutr{{product.nutriscore}}.png" class="h-60px top--30px right--25px position-absolute">
+                                </div>
+                                <img src="{{ product.product_img }}" class="card-img-top obj-fit-cover h-350px" alt="image produit">
+                                <div class="card-body">
+                                    <h5 class="results card-title text-center">
+                                        <a class="text-primary" href="/result?query={{product.code}}">
+                                            <strong>C'est mon produit !</strong>
+                                        </a>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+{% endblock %}

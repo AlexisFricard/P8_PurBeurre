@@ -1,0 +1,64 @@
+{% extends "template_ref.html" %}
+{% load static %}
+
+
+{% block body %}
+
+<!-- block banner -->
+<section class="page-section" id="account-banner" style="margin-top: 50px; height: 100px;"> 
+    <div class="container-fluid w-50 text-center mt-50">
+        <h1> Mes aliments substitués </h1>
+    </div>
+</section>
+    <!-- block myfood -->
+    <div class="container w-75">
+        <div class="row justify-content-center mt-3">
+            <div class="col-lg-5 mb-4">
+                <h3 class="text-center">
+                    Substitues
+                </h3>
+                {% for product in products %}
+                <div class="col-lg-8 mb-4 mt-5" style="margin: auto;">
+                    <div class="card text-primary">
+                        <div class="position-relative">
+                            <img alt="Nutriscore" src="static/assets/img/letnutr{{product.nutriscore}}.png" style="height:60px; top:-30px; right:-25px" class="position-absolute">
+                        </div>
+                        <img src="{{ product.product_img }}" class="card-img-top" alt="image produit" style="object-fit: cover" height="350px">
+                        <div class="card-body">
+                            <a href="{{product.product_url}}" style="height:150px" target="_blank">
+                                <h5 class="bg-white text-primary text-center">
+                                    Code barre  [{{ product.code }}]
+                                </h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col-lg-1 mb-4 justify-content-center bg-white"></div>
+            <div class="col-lg-5 mb-4">
+                <h3 class="text-center">
+                    Produits substitués
+                </h3>
+                {% for substitute in substitutes %}
+                <div class="col-lg-8 mb-4 mt-5" style="margin: auto;"> 
+                    <div class="card text-primary" name="{{ substitute.product_name }}">
+                        <div class="position-relative">
+                            <img alt="Nutriscore" src="static/assets/img/letnutr{{substitute.nutriscore}}.png" style="height:60px; top:-30px; right:-25px" class="position-absolute">
+                        </div>
+                        <img src="{{ substitute.product_img }}" class="card-img-top" alt="image produit" style="object-fit: cover" height="350px">
+                        <div class="card-body">
+                            <a href="{{substitute.product_url}}" style="height:150px" target="_blank">
+                                <h5 class="bg-white text-primary text-center">
+                                    Code barre  [{{ substitute.code }}]
+                                </h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

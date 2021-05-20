@@ -1,0 +1,46 @@
+{% extends "template_ref.html" %}
+{% load static %}
+
+{% block body %}
+    
+        <!-- form-->
+        <section class="text-center pt-mainNav full-size jc-center align-i-c row m-0 pr-20" style="background-image: url(static/assets/img/bg-rat.jpg)">
+            <div class="col-lg-12">
+                <h2>
+                    Se connecter
+                </h2>
+            </div>
+            <div class="col-lg-6">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleFirstName"><strong>Pseudo</strong></label>
+                        <input autocomplete='off' type="text" name="username" class="form-control" placeholder="mypseudo"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1"><strong>Mot de passe</strong></label>
+                        <input autocomplete='off' type="password" name="password" class="form-control" placeholder="password44xdf"/>
+                    </div>
+
+                    <button class="btn btn-lg bg-white mx-auto" type="submit">Se connecter</button>
+                
+                </form>
+            </div>
+            <div class="col-lg-7">
+                <strong>
+                    <h2>
+                        Pas encore inscrit ?</br>
+                    </h2>
+                <a href="/signup">
+                    <h3>
+                        <u class="pt-20px">
+                            Rejoignez-nous !
+                        </u>
+                    </h3>
+                </a>
+                </strong>
+            </div>
+        </section>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "template_ref.html" %}
+{% load static %}
+
+
+{% block body %}
+    <section class="pt-mainNav full-size align-i-c flex"> 
+        <div class="container-fluid w-50">
+            <form method="post" action="">
+                {% csrf_token %}
+                </br>
+                <div class="form-group">
+                    {{ form.username.label_tag }}
+                    <input autocomplete='off' type="text" name="username" class="form-control" placeholder="Shrek86"/>
+                </div>
+
+                <div class="form-group">
+                    {{ form.first_name.label_tag }}
+                    <input autocomplete='off' type="text" name="first_name" class="form-control" placeholder="Antoine"/>
+                </div>
+
+                <div class="form-group">
+                    {{ form.last_name.label_tag }}
+                    <input autocomplete='off' type="text" name="last_name" class="form-control" placeholder="Dupont"/>
+                </div>
+                <div class="form-group">
+                    {{ form.mail.label_tag }}
+                    <input autocomplete='off' type="email" name="mail" class="form-control" aria-describedby="emailHelp" placeholder="email@email.com">
+                </div>
+                <div class="form-group">
+                    {{ form.password.label_tag }}
+                    <input autocomplete='off' type="text" name="password" class="form-control" placeholder="motdepasse44xdf"/>
+                </div>
+                <button class="btn btn-lg bg-white mx-auto" type="submit">S'inscrire</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}

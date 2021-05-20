@@ -1,0 +1,117 @@
+{% extends "template_ref.html" %}
+{% load static %}
+{% block body %}
+    <!-- Product selected -->
+    {% for prod in products %}
+        <section class="nav">
+            <div class="container-fluid" id="results" style="background-image: url({{prod.product_img}});">
+                <div class="row justify-content-center">
+                    <div class="col-lg-3 text-center">
+                        <h1 class="mt-5 bg-primary border">
+                            {{ prod.product_name }}
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid mt-3" >
+                <div class="row justify-content-center mb-5">
+                    <div class="col-lg-4 text-center m-auto">
+                        <img src="static/assets/img/nutr{{prod.nutriscore}}.png" class="h-100px">
+                    </div>
+                    <div class="col-lg-4 text-center m-auto">
+                        <a href="{{prod.product_url}}" class="h-150px" target="_blank">
+                            <h3 class="bg-white text-primary">
+                                Voir la fiche d'OpenFoodFacts
+                            </h3>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 text-center">
+                        <h4>
+                            Valeur nutritionelle pour 100g
+                        </h4>
+                        <strong>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-5 text-left border border-white">
+                                    Energie: {{prod.energy_100g }}{{prod.energy_unit }}
+                                </div>
+                                <div class="col-lg-5 text-left border border-white">
+                                    Proteines: {{prod.proteins_100g}}g
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-5 text-left border border-white">
+                                    Gras: {{prod.fat_100g}}g
+                                </div>
+                                <div class="col-lg-5 text-left border border-white">
+                                    Gras saturé: {{prod.saturated_fat_100g}}g
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-5 text-left border border-white">
+                                    Glucides: {{prod.carbohydrates_100g}}g
+                                </div>
+                                <div class="col-lg-5 text-left border border-white">
+                                    Sucres: {{prod.sugars_100g}}g
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-5 text-left border border-white">
+                                    Fibres: {{prod.fiber_100g}}g
+                                </div>
+                                <div class="col-lg-5 text-left border border-white">
+                                    Sel: {{prod.salt_100g}}g
+                                </div>
+                            </div>
+                        </strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- SUBSITUTES-->
+        {% if substitutes %}
+        <div class="container">
+            <div class="container w-75">
+                <div class="row justify-content-center mt-3">
+                    {% for substitute in substitutes %}
+                        <div class="col-lg-4 mb-4 mt-1">
+                            <div class="card">
+                                <div class="position-relative">
+                                    <img alt="Nutriscore" src="static/assets/img/letnutr{{substitute.nutriscore}}.png" class="top--30px right--25px h-60px position-absolute">
+                                </div>
+                                <img src="{{ substitute.product_img }}" class="card-img-top obj-fit-cover h-350px" alt="image produit">
+                                <div class="card-body m-auto">
+                                    <a href="{{substitute.product_url}}" class="text-primary" target="_blank">
+                                        <h5 class="results card-title">
+                                            Lien OpenFoodFacts
+                                        </h5>
+                                    </a>
+                                    {% if user.is_authenticated %}
+                                        <a href="/save?query={{substitute.code}},{{prod.code}}">
+                                            <img src="static/assets/img/logosave.png" class="h-50px">
+                                        </a>
+                                    {% else %}
+                                        <h4 class="results card-title">
+                                            <a href="/signin?query={{prod.code}}" class="text-primary">
+                                                Se connecter
+                                            </a>
+                                        </h4>
+                                    {% endif %}
+                                </div>
+                                
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="container">
+            <div class="row justify-content-center m-auto">
+                <h1 class="mt-0">
+                    Désolé, nous n'avons pas trouvé de substituts
+                </h1>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
