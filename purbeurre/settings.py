@@ -7,6 +7,17 @@ import os
 import dj_database_url
 
 # SECURITY WARNING: don't run with debug turned on in production!
+DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'purbeurre',
+            'USER': 'devpurbeurre',
+            'PASSWORD': 'passwordpb',
+            'HOST': 'localhost',
+            'PORT': '',
+        },
+    }
+
 if os.environ.get('ENV') == 'PRODUCTION':
 
     ALLOWED_HOSTS = ['pur-beurre-af.herokuapp.com']
@@ -28,16 +39,6 @@ if os.environ.get('ENV') == 'PRODUCTION':
     )
 
 else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'purbeurre',
-            'USER': 'devpurbeurre',
-            'PASSWORD': 'passwordpb',
-            'HOST': 'localhost',
-            'PORT': '',
-        },
-    }
     DEBUG = True
     ALLOWED_HOSTS = []
 
