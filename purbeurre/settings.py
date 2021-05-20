@@ -18,30 +18,6 @@ DATABASES = {
         },
     }
 
-if os.environ.get('ENV') == 'PRODUCTION':
-
-    ALLOWED_HOSTS = ['pur-beurre-af.herokuapp.com']
-
-    db_from_env = dj_database_url.config(conn_max_age=500)
-
-    DATABASES['default'].update(db_from_env)
-
-    DEBUG = True
-    # Static files settings
-    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-
-    STATICFILES_STORAGE = (
-        'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    )
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'purbeurre/static'),
-    )
-
-else:
-    DEBUG = True
-    ALLOWED_HOSTS = []
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -130,3 +106,27 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+if os.environ.get('ENV') == 'PRODUCTION':
+
+    ALLOWED_HOSTS = ['pur-beurre-af.herokuapp.com']
+
+    db_from_env = dj_database_url.config(conn_max_age=500)
+
+    DATABASES['default'].update(db_from_env)
+
+    DEBUG = True
+    # Static files settings
+    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+
+    STATICFILES_STORAGE = (
+        'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    )
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'purbeurre/static'),
+    )
+
+else:
+    DEBUG = True
+    ALLOWED_HOSTS = []
