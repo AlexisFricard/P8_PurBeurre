@@ -18,13 +18,6 @@ DATABASES = {
         },
     }
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('PB_SECRET_KEY')
-
-# Application definition
 if os.environ.get('ENV') == 'PRODUCTION':
 
     ALLOWED_HOSTS = ['pur-beurre-af.herokuapp.com']
@@ -33,7 +26,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
 
     DATABASES['default'].update(db_from_env)
 
-    DEBUG = False
+    DEBUG = True
     # Static files settings
     PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
@@ -48,6 +41,14 @@ if os.environ.get('ENV') == 'PRODUCTION':
 else:
     DEBUG = True
     ALLOWED_HOSTS = []
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get('PB_SECRET_KEY')
+
+# Application definition
 
 INSTALLED_APPS = [
     'bootstrap4',
