@@ -18,9 +18,11 @@ def selection(request):
     if request.method == "POST":
         query = request.POST.get('user_text')
         query_clnd = remove_special_char(query, "add_space")
-
-        datas = build_data(query_clnd, "prod_name")
-        return render(request, 'selection.html', datas)
+        if query_clnd == "":
+            return redirect("index")
+        else:
+            datas = build_data(query_clnd, "prod_name")
+            return render(request, 'selection.html', datas)
 
 
 def result(request):
