@@ -13,10 +13,13 @@
                     </div>
                     <div class="col-lg-8 align-self-baseline">
                         <p class="text-white-75 font-weight-light mb-5">Trouvez un produit de substitution pour ceux que vous consommez tous les jours.</p>
-                        <a class="nav-link js-scroll-trigger mw-50" class="h-50px"">
-                            <form class="form-group" method="post" action="/selection">
+                        <a class="nav-link js-scroll-trigger mw-50" class="h-50px">
+                            <form class=" row align-i-c" method="post" action="/selection">
                                 {% csrf_token %}
-                                <input autocomplete='off' type="text" name="user_text" class="form-control" placeholder="Rechercher">
+                                <input autocomplete='off' type="text" name="user_text" class="form-control col-10" placeholder="Rechercher">
+                                <button class="btn btn-lg bg-white mx-auto col-1 h-50px" type="submit">
+                                    <img src="static/assets/img/search.png" class="h-100">
+                                </button>
                             </form>
                         </a>
                     </div>
