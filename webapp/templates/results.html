@@ -86,7 +86,7 @@
                                         </h5>
                                     </a>
                                     {% if user.is_authenticated %}
-                                        <a href="/save?query={{substitute.code}},{{prod.code}}">
+                                        <a href="/save?query={{substitute.code}},{{prod.code}}" id="save">
                                             <img src="static/assets/img/logosave.png" class="h-50px">
                                         </a>
                                     {% else %}
