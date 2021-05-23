@@ -26,7 +26,7 @@ def test_if_request_categories_return_exptected_datas(monkeypatch):
     class MockResponse:
         def json(*args, **kwargs):
             mock_url = (
-                'purbeurre/webapp/modules/api/tests/mocks/mock_categories.json'
+                'P8_PurBeurre/webapp/modules/api/tests/mocks/mock_categories.json'
             )
             with open(mock_url, encoding='utf-8') as json_file:
                 mock_resp = json.load(json_file)
@@ -77,7 +77,7 @@ def test_if_request_code_return_exptected_datas(monkeypatch):
     class MockResponse:
         def json(*args, **kwargs):
             mock_url = (
-                'purbeurre/webapp/modules/api/tests/mocks/mock_code.json'
+                'P8_PurBeurre/webapp/modules/api/tests/mocks/mock_code.json'
             )
             with open(mock_url, encoding='utf-8') as json_file:
                 mock_resp = json.load(json_file)
@@ -136,7 +136,7 @@ def test_if_request_products_return_none_or_datas(monkeypatch):
     class MockResponse:
         def json(*args, **kwargs):
             mock_url = (
-                'purbeurre/webapp/modules/api/tests/mocks/mock_products.json'
+                'P8_PurBeurre/webapp/modules/api/tests/mocks/mock_products.json'
             )
             with open(mock_url, encoding='utf-8') as json_file:
                 mock_resp = json.load(json_file)
@@ -146,7 +146,7 @@ def test_if_request_products_return_none_or_datas(monkeypatch):
     class MockNoResponse:
         def json(*args, **kwargs):
             mock_url = (
-                'purbeurre/webapp/modules/api' +
+                'P8_PurBeurre/webapp/modules/api' +
                 '/tests/mocks/mock_no_products.json'
             )
             with open(mock_url, encoding='utf-8') as json_file:
@@ -197,7 +197,7 @@ def test_if_request_categ_return_none_or_datas(monkeypatch):
     class MockResponse:
         def json(*args, **kwargs):
             mock_url = (
-                'purbeurre/webapp/modules/api/tests/mocks/mock_by_categ.json'
+                'P8_PurBeurre/webapp/modules/api/tests/mocks/mock_by_categ.json'
             )
             with open(mock_url, encoding='utf-8') as json_file:
                 mock_resp = json.load(json_file)

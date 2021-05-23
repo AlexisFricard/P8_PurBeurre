@@ -27,6 +27,11 @@ class TemplateTest(TestCase):
         view = selection(request)
         assert view.status_code == 200
 
+        request = RequestFactory().get('/selection')
+
+        view = selection(request)
+        assert view.status_code == 302
+
     def test_result(self):
 
         request = RequestFactory().get('/result')

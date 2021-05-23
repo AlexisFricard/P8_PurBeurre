@@ -24,6 +24,7 @@ def selection(request):
     else:
         return redirect("index")
 
+
 def result(request):
 
     if request.method == "GET":
