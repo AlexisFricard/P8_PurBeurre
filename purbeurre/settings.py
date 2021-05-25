@@ -22,10 +22,9 @@ DATABASES = {
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("PB_SECRET_KEY")
+SECRET_KEY = os.environ.get('PB_SECRET_KEY')
 
 # Application definition
-
 INSTALLED_APPS = [
     'bootstrap4',
     'usermanage.apps.UsermanageConfig',
@@ -37,7 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -48,9 +46,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 ROOT_URLCONF = 'purbeurre.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -66,58 +62,45 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'purbeurre.wsgi.application'
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',   # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',  # noqa
     },
 ]
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
-
 LANGUAGE_CODE = 'fr'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 STATIC_URL = '/static/'
 
 if os.environ.get('ENV') == 'PRODUCTION':
 
     ALLOWED_HOSTS = ['pur-beurre-af.herokuapp.com']
-
     db_from_env = dj_database_url.config(conn_max_age=500)
-
     DATABASES['default'].update(db_from_env)
-
     DEBUG = False
+
     # Static files settings
     PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-
     STATICFILES_STORAGE = (
         'whitenoise.storage.CompressedManifestStaticFilesStorage'
     )
