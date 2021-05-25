@@ -3,7 +3,7 @@ Test webapp/views.py
 
 PEP8 exeptions: (flake8) F401 - imported but unused (l.6)
 """
-from purbeurre import wsgi
+from purbeurre import wsgi  # noqa
 
 from django.contrib.auth.models import AnonymousUser, User
 from django.test import RequestFactory, TestCase
@@ -12,29 +12,28 @@ from webapp.views import index, selection, result, save
 
 
 class TemplateTest(TestCase):
-
     def test_index(self):
 
-        request = RequestFactory().get('index')
+        request = RequestFactory().get("index")
         view = index(request)
         assert view.status_code == 200
 
     def test_selection(self):
 
-        request = RequestFactory().post('/selection')
+        request = RequestFactory().post("/selection")
         request.POST = {"user_text": "nutella"}
 
         view = selection(request)
         assert view.status_code == 200
 
-        request = RequestFactory().get('/selection')
+        request = RequestFactory().get("/selection")
 
         view = selection(request)
         assert view.status_code == 302
 
     def test_result(self):
 
-        request = RequestFactory().get('/result')
+        request = RequestFactory().get("/result")
         request.GET = {"query": "3330720662002"}
 
         view = result(request)
@@ -43,7 +42,7 @@ class TemplateTest(TestCase):
     def test_save(self):
 
         # BUILD REQUEST
-        request = RequestFactory().get('/save')
+        request = RequestFactory().get("/save")
         request.GET = {"query": "3330720662002,4028491400907"}
 
         """ TEST 1 - WITH UNCONNECTED USER """
@@ -56,7 +55,7 @@ class TemplateTest(TestCase):
         assert view.url == "/signin"
 
         """ TEST 2 - WITH CONNECTED USER """
-        request.user = User.objects.get(username='JeanLouis')
+        request.user = User.objects.get(username="JeanLouis")
 
         view = save(request)
 

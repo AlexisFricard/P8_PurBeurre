@@ -5,7 +5,7 @@ PEP8 exeptions: (flake8) F401 - imported but unused (l.8)
 """
 import django
 
-from purbeurre import wsgi
+from purbeurre import wsgi  # noqa
 
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.contrib.auth.models import AnonymousUser, User
@@ -15,12 +15,11 @@ from usermanage.views import signup, log_out, account, signin, myfood
 
 
 class TemplateTest(TestCase):
-
     def test_signup(self):
 
-        """ TEST 1 - FROM signin """
+        """TEST 1 - FROM signin"""
 
-        request = RequestFactory().get('/signup')
+        request = RequestFactory().get("/signup")
 
         view = signup(request)
 
@@ -29,14 +28,14 @@ class TemplateTest(TestCase):
 
         """ TEST 2 - WHEN USER POST FORM REGISTER' """
 
-        request = RequestFactory().post('/signup')
+        request = RequestFactory().post("/signup")
 
         request.POST = {
             "username": "Test_signup",
             "password": "Test_pw",
             "email": "Test_email@mail.com",
             "first_name": "Test_fn",
-            "last_name": "Test_ln"
+            "last_name": "Test_ln",
         }
 
         view = signup(request)
@@ -47,9 +46,9 @@ class TemplateTest(TestCase):
 
     def test_signin(self):
 
-        """ TEST 1 - WITH A CONNECTED USER """
-        request = RequestFactory().get('/signin')
-        request.user = User.objects.get(username='JeanLouis')
+        """TEST 1 - WITH A CONNECTED USER"""
+        request = RequestFactory().get("/signin")
+        request.user = User.objects.get(username="JeanLouis")
 
         view = signin(request)
 
@@ -59,7 +58,7 @@ class TemplateTest(TestCase):
 
         """ TEST 2 - TO LOGIN WITH ANONYMOUS USER """
 
-        request = RequestFactory().post('/signin')
+        request = RequestFactory().post("/signin")
 
         middleware = SessionMiddleware()
         middleware.process_request(request)
@@ -67,10 +66,7 @@ class TemplateTest(TestCase):
 
         request.user = AnonymousUser()
 
-        request.POST = {
-            'username': 'JeanLouis',
-            'password': 'jeanjean'
-        }
+        request.POST = {"username": "JeanLouis", "password": "jeanjean"}
 
         view = signin(request)
 
@@ -88,13 +84,8 @@ class TemplateTest(TestCase):
 
         request.user = AnonymousUser()
 
-        request.POST = {
-            'username': 'JeanLouis',
-            'password': 'jeanjean'
-        }
-        request.GET = {
-            "query": '80177173'
-        }
+        request.POST = {"username": "JeanLouis", "password": "jeanjean"}
+        request.GET = {"query": "80177173"}
 
         view = signin(request)
 
@@ -104,7 +95,7 @@ class TemplateTest(TestCase):
 
         """ TEST 4 - WITH UNCONNECTED CLIENT FROM HOMEPAGE """
 
-        request = RequestFactory().get('/signin')
+        request = RequestFactory().get("/signin")
         request.user = AnonymousUser()
 
         view = signin(request)
@@ -114,9 +105,9 @@ class TemplateTest(TestCase):
 
     def test_account(self):
 
-        """ TEST 1 - WITH A CONNECTED USER """
-        request = RequestFactory().get('/account')
-        request.user = User.objects.get(username='JeanLouis')
+        """TEST 1 - WITH A CONNECTED USER"""
+        request = RequestFactory().get("/account")
+        request.user = User.objects.get(username="JeanLouis")
 
         view = account(request)
 
@@ -125,7 +116,7 @@ class TemplateTest(TestCase):
 
         """ TEST 2 - WITH ANONYMOUS USER """
         # IN FACT, USER UNCONNECTED CAN'T ACCES TO 'account.html'
-        request = RequestFactory().post('/account')
+        request = RequestFactory().post("/account")
         request.user = AnonymousUser()
 
         try:
@@ -135,8 +126,8 @@ class TemplateTest(TestCase):
 
     def test_my_food(self):
         # IN FACT, USER UNCONNECTED CAN'T ACCES TO 'myfood.html'
-        request = RequestFactory().get('/myfood')
-        request.user = User.objects.get(username='JeanLouis')
+        request = RequestFactory().get("/myfood")
+        request.user = User.objects.get(username="JeanLouis")
 
         view = myfood(request)
 
@@ -145,8 +136,8 @@ class TemplateTest(TestCase):
 
     def test_log_out(self):
 
-        request = RequestFactory().post('/log_out')
-        request.user = User.objects.get(username='JeanLouis')
+        request = RequestFactory().post("/log_out")
+        request.user = User.objects.get(username="JeanLouis")
 
         middleware = SessionMiddleware()
         middleware.process_request(request)

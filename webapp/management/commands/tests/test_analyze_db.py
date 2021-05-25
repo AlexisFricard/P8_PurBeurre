@@ -5,7 +5,7 @@ PEP8 exeptions: (flake8) F401 - imported but unused (l.8)
 """
 import json
 
-from purbeurre import wsgi
+from purbeurre import wsgi  # noqa
 from webapp.management.commands.analyze_db import update_db
 
 
@@ -14,9 +14,9 @@ def test_if_update_db_responde_correctly(monkeypatch):
     class MockResponse:
         def json(*args, **kwargs):
             mock_url = (
-                'P8_PurBeurre/webapp/modules/api/tests/mocks/mock_code.json'
+                "P8_PurBeurre/webapp/modules/api/tests/mocks/mock_code.json"  # noqa
             )
-            with open(mock_url, encoding='utf-8') as json_file:
+            with open(mock_url, encoding="utf-8") as json_file:
                 mock_resp = json.load(json_file)
             return mock_resp
 
@@ -24,10 +24,9 @@ def test_if_update_db_responde_correctly(monkeypatch):
     class MockNoResponse:
         def json(*args, **kwargs):
             mock_url = (
-                'P8_PurBeurre/webapp/modules/api' +
-                '/tests/mocks/mock_no_code.json'
+                "P8_PurBeurre/webapp/modules/api/tests/mocks/mock_no_code.json"  # noqa
             )
-            with open(mock_url, encoding='utf-8') as json_file:
+            with open(mock_url, encoding="utf-8") as json_file:
                 mock_resp = json.load(json_file)
             return mock_resp
 
@@ -43,8 +42,8 @@ def test_if_update_db_responde_correctly(monkeypatch):
     # PATCH REQUEST
     monkeypatch.setattr(
         "webapp.modules.api.requests_library.request_code.requests.get",
-        mock_requests_url_answer
-        )
+        mock_requests_url_answer,
+    )
     # TEST
     assert update_db() is None
 
@@ -53,8 +52,8 @@ def test_if_update_db_responde_correctly(monkeypatch):
     # CHANGE PATCH REQUEST
     monkeypatch.setattr(
         "webapp.modules.api.requests_library.request_code.requests.get",
-        mock_requests_empty_result
-        )
+        mock_requests_empty_result,
+    )
 
     # TEST
     assert update_db() is None

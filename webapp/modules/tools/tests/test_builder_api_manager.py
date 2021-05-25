@@ -15,12 +15,11 @@ def test_if_builder_by_code_return_expected_datas(monkeypatch):
 
     # MOCK RESPONSE
     class MockResponse:
-
         def json(*args, **kwargs):
             mock_url = (
-                'P8_PurBeurre/webapp/modules/api/tests/mocks/mock_code.json'
+                "P8_PurBeurre/webapp/modules/api/tests/mocks/mock_code.json"  # noqa
             )
-            with open(mock_url, encoding='utf-8') as json_file:
+            with open(mock_url, encoding="utf-8") as json_file:
                 mock_resp = json.load(json_file)
             return mock_resp
 
@@ -33,8 +32,8 @@ def test_if_builder_by_code_return_expected_datas(monkeypatch):
     # PATCH REQUEST
     monkeypatch.setattr(
         "webapp.modules.api.requests_library.request_code.requests.get",
-        mock_requests_url_answer
-        )
+        mock_requests_url_answer,
+    )
 
     """ TEST - WITH CODE """
     test_products = build_data("mock_code", "code")
@@ -52,9 +51,9 @@ def test_if_builder_by_name_return_expected_datas(monkeypatch):
     class MockProducts:
         def json(*args, **kwargs):
             mock_url = (
-                'P8_PurBeurre/webapp/modules/api/tests/mocks/mock_products.json'
+                "P8_PurBeurre/webapp/modules/api/tests/mocks/mock_products.json"  # noqa
             )
-            with open(mock_url, encoding='utf-8') as json_file:
+            with open(mock_url, encoding="utf-8") as json_file:
                 mock_resp = json.load(json_file)
             return mock_resp
 
@@ -64,9 +63,9 @@ def test_if_builder_by_name_return_expected_datas(monkeypatch):
 
     # PATCH REQUEST
     monkeypatch.setattr(
-        "webapp.modules.api.requests_library.request_products.requests.get",
-        mock_requests_url_answer_prod
-        )
+        "webapp.modules.api.requests_library.request_products.requests.get",  # noqa
+        mock_requests_url_answer_prod,
+    )
 
     """ TEST - WITH NAME """
     test_products = build_data("mock_name", "prod_name")
@@ -86,9 +85,9 @@ def test_if_builder_by_substitute_return_expected_datas(monkeypatch):
     class MockResponse:
         def json(*args, **kwargs):
             mock_url = (
-                'P8_PurBeurre/webapp/modules/api/tests/mocks/mock_by_categ.json'
+                "P8_PurBeurre/webapp/modules/api/tests/mocks/mock_by_categ.json"  # noqa
             )
-            with open(mock_url, encoding='utf-8') as json_file:
+            with open(mock_url, encoding="utf-8") as json_file:
                 mock_resp = json.load(json_file)
             return mock_resp
 
@@ -99,10 +98,10 @@ def test_if_builder_by_substitute_return_expected_datas(monkeypatch):
     # PATCH REQUEST
     monkeypatch.setattr(
         "webapp.modules.api.requests_library.request_categ.requests.get",
-        mock_requests_url_answer
-        )
+        mock_requests_url_answer,
+    )
 
-    response = build_data(['mock_categorie', "e"], "substitute")
+    response = build_data(["mock_categorie", "e"], "substitute")
     # TEST TYPE OF RESPONSE
     assert isinstance(response[0], dict)
     # TEST NUMB OF DATAS

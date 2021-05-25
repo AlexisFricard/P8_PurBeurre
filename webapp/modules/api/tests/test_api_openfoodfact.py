@@ -5,7 +5,7 @@ PEP8 exeptions: (flake8) F401 - imported but unused (l.8)
 """
 import json
 
-from purbeurre import wsgi
+from purbeurre import wsgi  # noqa
 
 from webapp.modules.api.requests_library import request_categ as r_by_categ
 from webapp.modules.api.requests_library import request_categories as r_categ
@@ -16,7 +16,6 @@ from webapp.modules.api.requests_library import request_products as r_prod
 """ HAS NOT BEEN TESTED """
 # request_code ==> Wrong 'code' ==> TO BE TESTED WITH ONLINE API
 # request_categ ==> Params 'to_fill' ==> TESTED IN test_db_manager.py
-
 """ REQUEST n CATEGORIES """
 
 
@@ -25,10 +24,8 @@ def test_if_request_categories_return_exptected_datas(monkeypatch):
     # MOCK RESPONSE
     class MockResponse:
         def json(*args, **kwargs):
-            mock_url = (
-                'P8_PurBeurre/webapp/modules/api/tests/mocks/mock_categories.json'
-            )
-            with open(mock_url, encoding='utf-8') as json_file:
+            mock_url = "P8_PurBeurre/webapp/modules/api/tests/mocks/mock_categories.json"  # noqa
+            with open(mock_url, encoding="utf-8") as json_file:
                 mock_resp = json.load(json_file)
             return mock_resp
 
@@ -38,9 +35,9 @@ def test_if_request_categories_return_exptected_datas(monkeypatch):
 
     # PATCH REQUEST
     monkeypatch.setattr(
-        "webapp.modules.api.requests_library.request_categories.requests.get",
-        mock_requests_url_answer
-        )
+        "webapp.modules.api.requests_library.request_categories.requests.get",  # noqa
+        mock_requests_url_answer,
+    )
 
     # PATCH VARS
     number = 6
@@ -59,7 +56,7 @@ def test_if_request_categories_return_exptected_datas(monkeypatch):
 
 def test_if_request_categories_return_None():
 
-    """ TEST 1 - WRONG VALUE """
+    """TEST 1 - WRONG VALUE"""
     categories = r_categ.query_categories("mock")
     assert categories is None
 
@@ -77,9 +74,9 @@ def test_if_request_code_return_exptected_datas(monkeypatch):
     class MockResponse:
         def json(*args, **kwargs):
             mock_url = (
-                'P8_PurBeurre/webapp/modules/api/tests/mocks/mock_code.json'
+                "P8_PurBeurre/webapp/modules/api/tests/mocks/mock_code.json"  # noqa
             )
-            with open(mock_url, encoding='utf-8') as json_file:
+            with open(mock_url, encoding="utf-8") as json_file:
                 mock_resp = json.load(json_file)
             return mock_resp
 
@@ -89,9 +86,9 @@ def test_if_request_code_return_exptected_datas(monkeypatch):
 
     # PATCH REQUEST
     monkeypatch.setattr(
-        "webapp.modules.api.requests_library.request_code.requests.get",
-        mock_requests_url_answer
-        )
+        "webapp.modules.api.requests_library.request_code.requests.get",  # noqa
+        mock_requests_url_answer,
+    )
 
     # PATCH VARS
     parameters = ["selection", "result"]
@@ -120,7 +117,7 @@ def test_if_request_code_return_exptected_datas(monkeypatch):
 
 def test_if_request_code_return_None():
 
-    """ TEST WRONG PARAMATER """
+    """TEST WRONG PARAMATER"""
     response = r_code.by_code("3330720662002", "mock_paramater")
 
     assert response is None
@@ -136,9 +133,9 @@ def test_if_request_products_return_none_or_datas(monkeypatch):
     class MockResponse:
         def json(*args, **kwargs):
             mock_url = (
-                'P8_PurBeurre/webapp/modules/api/tests/mocks/mock_products.json'
+                "P8_PurBeurre/webapp/modules/api/tests/mocks/mock_products.json"  # noqa
             )
-            with open(mock_url, encoding='utf-8') as json_file:
+            with open(mock_url, encoding="utf-8") as json_file:
                 mock_resp = json.load(json_file)
             return mock_resp
 
@@ -146,10 +143,10 @@ def test_if_request_products_return_none_or_datas(monkeypatch):
     class MockNoResponse:
         def json(*args, **kwargs):
             mock_url = (
-                'P8_PurBeurre/webapp/modules/api' +
-                '/tests/mocks/mock_no_products.json'
+                "P8_PurBeurre/webapp/modules/api"
+                + "/tests/mocks/mock_no_products.json"  # noqa
             )
-            with open(mock_url, encoding='utf-8') as json_file:
+            with open(mock_url, encoding="utf-8") as json_file:
                 mock_resp = json.load(json_file)
             return mock_resp
 
@@ -162,9 +159,9 @@ def test_if_request_products_return_none_or_datas(monkeypatch):
 
     # PATCH REQUEST
     monkeypatch.setattr(
-        "webapp.modules.api.requests_library.request_products.requests.get",
-        mock_requests_url_answer
-        )
+        "webapp.modules.api.requests_library.request_products.requests.get",  # noqa
+        mock_requests_url_answer,
+    )
 
     """ TEST 1 - RESPONSE """
     response = r_prod.query_n_products("mock_name", 6)
@@ -178,9 +175,9 @@ def test_if_request_products_return_none_or_datas(monkeypatch):
 
     # CHANGE PATCH REQUEST
     monkeypatch.setattr(
-        "webapp.modules.api.requests_library.request_products.requests.get",
-        mock_requests_empty_result
-        )
+        "webapp.modules.api.requests_library.request_products.requests.get",  # noqa
+        mock_requests_empty_result,
+    )
 
     response = r_prod.query_n_products("mock_name", 6)
 
@@ -197,9 +194,9 @@ def test_if_request_categ_return_none_or_datas(monkeypatch):
     class MockResponse:
         def json(*args, **kwargs):
             mock_url = (
-                'P8_PurBeurre/webapp/modules/api/tests/mocks/mock_by_categ.json'
+                "P8_PurBeurre/webapp/modules/api/tests/mocks/mock_by_categ.json"  # noqa
             )
-            with open(mock_url, encoding='utf-8') as json_file:
+            with open(mock_url, encoding="utf-8") as json_file:
                 mock_resp = json.load(json_file)
             return mock_resp
 
@@ -209,20 +206,16 @@ def test_if_request_categ_return_none_or_datas(monkeypatch):
 
     # PATCH REQUEST
     monkeypatch.setattr(
-        "webapp.modules.api.requests_library.request_categ.requests.get",
-        mock_requests_url_answer
-        )
+        "webapp.modules.api.requests_library.request_categ.requests.get",  # noqa
+        mock_requests_url_answer,
+    )
 
     # PATCH VARS
     number = 6
 
     """ TEST 1 - PARAMS SUBSTITUTE """
 
-    response = r_by_categ.query_products(
-        "mock_categorie",
-        number,
-        ["substitute", "e"]
-        )
+    response = r_by_categ.query_products("mock", number, ["substitute", "e"])
 
     # TEST TYPE OF RESPONSE
     assert isinstance(response, dict)
@@ -232,10 +225,8 @@ def test_if_request_categ_return_none_or_datas(monkeypatch):
     """ TEST 2 - WRONG PARAMS """
 
     response = r_by_categ.query_products(
-        "mock_categorie",
-        number,
-        ["mock_wrong_params", "e"]
-        )
+        "mock_categorie", number, ["mock_wrong_params", "e"]
+    )
 
     # TEST RESPONSE
     assert response is None
@@ -244,9 +235,7 @@ def test_if_request_categ_return_none_or_datas(monkeypatch):
     # TEST VALUE ERROR
     try:
         response = r_by_categ.query_products(
-            "mock_categorie",
-            number,
-            ["substitute", "g"]
-            )
+            "mock_categorie", number, ["substitute", "g"]
+        )
     except ValueError:
         assert response is None

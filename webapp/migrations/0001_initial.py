@@ -7,54 +7,99 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Nutriment',
+            name="Nutriment",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('code', models.TextField(max_length=200)),
-                ('energy_100g', models.DecimalField(decimal_places=2, max_digits=7)),
-                ('energy_unit', models.CharField(max_length=5)),
-                ('proteins_100g', models.DecimalField(decimal_places=2, max_digits=6)),
-                ('fat_100g', models.DecimalField(decimal_places=2, max_digits=6)),
-                ('saturated_fat_100g', models.DecimalField(decimal_places=2, max_digits=6)),
-                ('carbohydrates_100g', models.DecimalField(decimal_places=2, max_digits=6)),
-                ('sugars_100g', models.DecimalField(decimal_places=2, max_digits=6)),
-                ('fiber_100g', models.DecimalField(decimal_places=2, max_digits=6)),
-                ('salt_100g', models.DecimalField(decimal_places=2, max_digits=6)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("code", models.TextField(max_length=200)),
+                (
+                    "energy_100g",
+                    models.DecimalField(
+                        decimal_places=2,
+                        max_digits=7,
+                    ),
+                ),
+                ("energy_unit", models.CharField(max_length=5)),
+                (
+                    "proteins_100g",
+                    models.DecimalField(decimal_places=2, max_digits=6),
+                ),
+                (
+                    "fat_100g",
+                    models.DecimalField(decimal_places=2, max_digits=6),
+                ),  # noqa
+                (
+                    "saturated_fat_100g",
+                    models.DecimalField(decimal_places=2, max_digits=6),
+                ),
+                (
+                    "carbohydrates_100g",
+                    models.DecimalField(decimal_places=2, max_digits=6),
+                ),
+                (
+                    "sugars_100g",
+                    models.DecimalField(decimal_places=2, max_digits=6),
+                ),  # noqa
+                (
+                    "fiber_100g",
+                    models.DecimalField(decimal_places=2, max_digits=6),
+                ),  # noqa
+                (
+                    "salt_100g",
+                    models.DecimalField(decimal_places=2, max_digits=6),
+                ),  # noqa
             ],
             options={
-                'db_table': 'nutriment',
+                "db_table": "nutriment",
             },
         ),
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('product_name', models.CharField(max_length=200)),
-                ('product_url', models.TextField()),
-                ('product_img', models.TextField()),
-                ('category', models.CharField(max_length=200)),
-                ('nutriscore', models.CharField(max_length=5)),
-                ('code', models.TextField(default=0)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("product_name", models.CharField(max_length=200)),
+                ("product_url", models.TextField()),
+                ("product_img", models.TextField()),
+                ("category", models.CharField(max_length=200)),
+                ("nutriscore", models.CharField(max_length=5)),
+                ("code", models.TextField(default=0)),
             ],
             options={
-                'db_table': 'product',
+                "db_table": "product",
             },
         ),
         migrations.CreateModel(
-            name='Save',
+            name="Save",
             fields=[
-                ('save_id', models.AutoField(primary_key=True, serialize=False)),
-                ('user', models.TextField(default=0)),
-                ('substitute', models.TextField(default=0)),
-                ('product_substitued', models.TextField(default=0)),
+                (
+                    "save_id",
+                    models.AutoField(primary_key=True, serialize=False),
+                ),  # noqa
+                ("user", models.TextField(default=0)),
+                ("substitute", models.TextField(default=0)),
+                ("product_substitued", models.TextField(default=0)),
             ],
             options={
-                'db_table': 'save',
+                "db_table": "save",
             },
         ),
     ]
