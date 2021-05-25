@@ -10,29 +10,29 @@ from webapp.modules.psql.db_manager import add_data, add_nutr_data
 
 
 def index(request):
-    return render(request, "index.html")
+    return render(request, 'index.html')
 
 
 def legal_notices(request):
-    return render(request, "legal_notices.html")
+    return render(request, 'legal_notices.html')
 
 
 def selection(request):
 
     if request.method == "POST":
-        query = request.POST.get("user_text")
+        query = request.POST.get('user_text')
         query_clnd = remove_special_char(query, "add_space")
         if query_clnd != "":
             datas = build_data(query_clnd, "prod_name")
-            return render(request, "selection.html", datas)
+            return render(request, 'selection.html', datas)
     else:
-        return redirect("index")
+        return redirect('index')
 
 
 def result(request):
 
     if request.method == "GET":
-        code = request.GET.get("query")
+        code = request.GET.get('query')
 
         """ GET CATEGORY AND NUTRISCORE FROM SELECTED PRODUCT """
         datas = build_data(code, "code")
@@ -44,12 +44,12 @@ def result(request):
         ]
         datas["substitutes"] = build_data(data_product, "substitute")
 
-        return render(request, "results.html", datas)
+        return render(request, 'results.html', datas)
 
 
 def save(request):
     if request.method == "GET":
-        data = request.GET.get("query")
+        data = request.GET.get('query')
         datas = data.replace(",", " ").split()
 
         if request.user.is_authenticated:
@@ -87,7 +87,7 @@ def save(request):
 
             datas.append(request.user.email)
             save_research(datas)
-            return redirect("myfood")
+            return redirect('myfood')
 
         else:
-            return redirect("signin")
+            return redirect('signin')
