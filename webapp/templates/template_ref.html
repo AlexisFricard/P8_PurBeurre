@@ -37,7 +37,7 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto align-i-c jc-center">
-                        <form class="row align-i-c mr-auto" method="post" action="/selection">
+                        <form class="row align-i-c" method="post" action="/selection">
                             {% csrf_token %}
                             <input autocomplete='off' type="text" name="user_text" class="form-control col-9" placeholder="Rechercher">
                             <button class="btn btn-lg bg-white mx-auto col-3" type="submit" name="wen_logo">
