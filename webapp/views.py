@@ -25,6 +25,8 @@ def selection(request):
         if query_clnd != "":
             datas = build_data(query_clnd, "prod_name")
             return render(request, 'selection.html', datas)
+        else:
+            return redirect('index')
     else:
         return redirect('index')
 
